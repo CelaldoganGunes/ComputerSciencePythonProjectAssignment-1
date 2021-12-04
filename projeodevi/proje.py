@@ -244,7 +244,6 @@ def main():
         arac_var = input("Başka araç var mı? (e/E/h/H): ")
         while not (arac_var == "e" or arac_var == "E" or arac_var == "H" or arac_var == "h"):
             arac_var = input("Başka araç var mı? (e/E/h/H): ")
-
     print()
 
     #  otoparkı kullanan toplam araç sayısı, her araç sınıfı için araç sayıları ve tüm araçlar içindeki oranları (%)
