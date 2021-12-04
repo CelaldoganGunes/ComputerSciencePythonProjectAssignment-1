@@ -1,4 +1,4 @@
-#Sabitler
+# Sabitler
 
 SURE_BIR_SAATTEN_AZ = 3
 SURE_UC_SAATTEN_AZ = 5
@@ -26,7 +26,7 @@ INDIRIM_ORANI_ENGELLI = 50
 
 #Fonksiyonlar
 
-def sinif_kodundan_arac_sinifini_ogren(sinif_kodu):
+def sinif_kodundan_arac_sinifini_ogren(sinif_kodu):  # araç sınıfını girerek string cinsinden türü ve katsayı değeri elde edilir.
     if sinif_kodu == SINIF_KODU_MOTORSIKLET:
         return "motorsiklet", KATSAYI_MOTORSIKLET
     elif sinif_kodu == SINIF_KODU_BINEK:
@@ -40,18 +40,21 @@ def sinif_kodundan_arac_sinifini_ogren(sinif_kodu):
     elif sinif_kodu == SINIF_KODU_TIR:
         return "tır", KATSAYI_TIR
 
-def sure_hesaplama(dakika,donus_tipi):
+def sure_hesaplama(dakika,donus_tipi):  # dakika cinsinden girilen süreyi gün, saat, ve dakikaya string ve int cinsinden yazdırıyor.
     saat = dakika//60
     artik_dakika = dakika % 60
     gun = saat//24
     artik_saat = saat % 24
 
+    # Fonksiyonun kullanıldığı yerin ihtiyacına göre zamanı farklı veri tipinde döndürüyoruz.
     if donus_tipi == "sayi":
         return gun, artik_saat, artik_dakika
     elif donus_tipi == "metin":
         return f"{gun} gün, {artik_saat} saat, {artik_dakika} dakika"
 
 def main():
+
+    #Değişkenler
 
     arac_var = "e"
 
@@ -92,9 +95,9 @@ def main():
     en_masrafli_binek_aracin_suresi = 0
     en_masrafli_binek_aracin_ucreti = 0
 
-
     while arac_var == "e" or arac_var == "E":
 
+        #Inputlar
 
         arac_plakasi = input("Plakayı girin: ")
         arac_sinifi_kodu = int(input("Araç sınıfı kodunu girin [1-6]: "))
@@ -120,6 +123,8 @@ def main():
             while not (ozel_durum == "y" or ozel_durum == "Y" or ozel_durum == "G" or ozel_durum == "g" or ozel_durum == "E" or ozel_durum == "e"):
                 ozel_durum = input("(Varsa) Sürücünün özel durumunu girin (y/Y/g/G/e/E): ")
 
+        # Araç Bilgileri Print
+
         print()
         print(f"Aracın plakası: {arac_plakasi}")
 
@@ -130,6 +135,8 @@ def main():
         print(f"Aracın otoparkta kaldığı süre: {dd} gün {hh} saat {mm} dakika")
 
         print(f"Sürücünün adı ve soyadı: {surucu_ad_soyad}")
+
+        # İndirim Oranı Hesaplama
 
         indirim_orani = 0
         if ozel_durum == "g" or ozel_durum == "G":
@@ -148,6 +155,8 @@ def main():
             ozel_durumlu_arac_park_suresi += arac_otoparkta_kaldigi_sure
             if arac_otoparkta_kaldigi_sure > 180:
                 indirimli_uc_saatten_cok_arac_sayisi += 1
+
+        # Ucret Hesaplama
 
         ucret_gun = dd * SURE_HER_YIRMIDORT_SAAT
 
@@ -173,6 +182,8 @@ def main():
         ucret_toplam_tum_araclar += ucret_toplam
 
         print(f"Otopark ücreti: {round(ucret_toplam,2)} TL")
+
+        # Araç İstatistiklerine Dair Hesaplamalar
 
         arac_sayisi_toplam += 1
         if sinif_adi == "motorsiklet":
@@ -207,9 +218,7 @@ def main():
             ucret_toplam_tir += ucret_toplam
             sure_dakika_tir += arac_otoparkta_kaldigi_sure
 
-
-
-
+        # En Son İstenen Özel Veriler için Hesaplamalar
 
         if arac_sinifi_kodu == SINIF_KODU_BINEK and arac_agirligi < 1000:
             bir_tondan_hafif_binek_arac_sayisi += 1
@@ -230,6 +239,7 @@ def main():
             en_uzun_kalan_aracin_suresi = arac_otoparkta_kaldigi_sure
             en_uzun_kalan_aracin_tutari = ucret_toplam
 
+        # Döngü devamı için girdi alma
         print()
         arac_var = input("Başka araç var mı? (e/E/h/H): ")
         while not (arac_var == "e" or arac_var == "E" or arac_var == "H" or arac_var == "h"):
