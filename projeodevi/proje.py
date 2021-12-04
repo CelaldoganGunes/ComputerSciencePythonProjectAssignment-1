@@ -36,15 +36,42 @@ def sinif_kodundan_arac_sinifini_ogren(sinif_kodu):
     elif sinif_kodu == SINIF_KODU_TIR:
         return "tır", KATSAYI_TIR
 
-def sure_hesaplama(dakika):
+def sure_hesaplama(dakika,donus_tipi):
     saat = dakika//60
     artik_dakika = dakika % 60
     gun = saat//24
     artik_saat = saat % 24
-    return gun, artik_saat, artik_dakika
+
+    if donus_tipi == "sayi":
+        return gun, artik_saat, artik_dakika
+    elif donus_tipi == "metin":
+        return f"{gun} gün, {artik_saat} saat, {artik_dakika} dakika"
 
 def main():
     arac_var = "e"
+
+    arac_sayisi_toplam = 0
+    arac_sayisi_motorsiklet = 0
+    arac_sayisi_binek = 0
+    arac_sayisi_minibus = 0
+    arac_sayisi_otobus = 0
+    arac_sayisi_kamyon = 0
+    arac_sayisi_tir = 0
+
+    ucret_toplam_tum_araclar = 0
+    ucret_toplam_motorsiklet = 0
+    ucret_toplam_binek = 0
+    ucret_toplam_minibus = 0
+    ucret_toplam_otobus = 0
+    ucret_toplam_kamyon = 0
+    ucret_toplam_tir = 0
+
+    sure_dakika_motorsiklet = 0
+    sure_dakika_binek = 0
+    sure_dakika_minibus = 0
+    sure_dakika_otobus = 0
+    sure_dakika_kamyon = 0
+    sure_dakika_tir = 0
 
     while arac_var == "e" or arac_var == "E":
 
@@ -83,10 +110,8 @@ def main():
         sinif_adi, sinif_katsayi = sinif_kodundan_arac_sinifini_ogren(arac_sinifi_kodu)
         print(f"Aracın sınıfı: {sinif_adi}")
         print(f"Aracın ağırlığı: {arac_agirligi:.2f} KG")
-        dd, hh, mm = sure_hesaplama(arac_otoparkta_kaldigi_sure)
+        dd, hh, mm = sure_hesaplama(arac_otoparkta_kaldigi_sure,"sayi")
         print(f"Aracın otoparkta kaldığı süre: {dd} gün {hh} saat {mm} dakika")
-
-
 
         print(f"Sürücünün adı ve soyadı: {surucu_ad_soyad}")
 
@@ -99,7 +124,6 @@ def main():
             print(f"Engelli indirim oranı: %{INDIRIM_ORANI_ENGELLI}")
             indirim_orani = INDIRIM_ORANI_ENGELLI
             print(f"Sürücünün özel durumu: Engelli")
-
 
 
         ucret_gun = dd * SURE_HER_YIRMIDORT_SAAT
@@ -117,16 +141,77 @@ def main():
         ucret_sure = sinif_katsayi * (ucret_gun + ucret_saat)
 
         ucret_giris = (arac_agirligi / 1000) * 2.5
-        toplam_ucret = ucret_giris + ucret_sure
+        ucret_toplam = ucret_giris + ucret_sure
 
-        toplam_ucret -= toplam_ucret * indirim_orani / 100
+        ucret_toplam -= ucret_toplam * indirim_orani / 100
+        ucret_toplam_tum_araclar += ucret_toplam
 
-        print(f"Otopark ücreti: {round(toplam_ucret,2)} TL")
+        print(f"Otopark ücreti: {round(ucret_toplam,2)} TL")
+
+        arac_sayisi_toplam += 1
+        if sinif_adi == "motorsiklet":
+            arac_sayisi_motorsiklet += 1
+            ucret_toplam_motorsiklet += ucret_toplam
+            sure_dakika_motorsiklet += arac_otoparkta_kaldigi_sure
+        elif sinif_adi == "binek":
+            arac_sayisi_binek += 1
+            ucret_toplam_binek += ucret_toplam
+            sure_dakika_binek += arac_otoparkta_kaldigi_sure
+
+        elif sinif_adi == "minibus":
+            arac_sayisi_minibus += 1
+            ucret_toplam_minibus += ucret_toplam
+            sure_dakika_minibus += arac_otoparkta_kaldigi_sure
+
+        elif sinif_adi == "otobüs":
+            arac_sayisi_otobus += 1
+            ucret_toplam_otobus += ucret_toplam
+            sure_dakika_otobus += arac_otoparkta_kaldigi_sure
+
+        elif sinif_adi == "kamyon":
+            arac_sayisi_kamyon += 1
+            ucret_toplam_kamyon += ucret_toplam
+            sure_dakika_kamyon += arac_otoparkta_kaldigi_sure
+
+        elif sinif_adi == "tır":
+            arac_sayisi_tir += 1
+            ucret_toplam_tir += ucret_toplam
+            sure_dakika_tir += arac_otoparkta_kaldigi_sure
+
         arac_var = input("Başka araç var mı? (e/E/h/H): ")
         while not (arac_var == "e" or arac_var == "E" or arac_var == "H" or arac_var == "h"):
             arac_var = input("Başka araç var mı? (e/E/h/H): ")
         print()
 
         #endregion
+
+    #otoparkı kullanan toplam araç sayısı, her araç sınıfı için araç sayıları ve tüm araçlar içindeki oranları (%)
+    print(f"Otoparktaki toplam araç sayısı:{arac_sayisi_toplam}")
+    print(f"Motorsiklet sayısı: {arac_sayisi_motorsiklet}, Tüm araçlara oranı: %{arac_sayisi_motorsiklet * 100 / arac_sayisi_toplam: .2f}")
+    print(f"Binek sayısı: {arac_sayisi_binek}, Tüm araçlara oranı: %{arac_sayisi_binek * 100 / arac_sayisi_toplam: .2f}")
+    print(f"Minibus sayısı: {arac_sayisi_minibus}, Tüm araçlara oranı: %{arac_sayisi_minibus * 100 / arac_sayisi_toplam: .2f}")
+    print(f"Otobüs sayısı: {arac_sayisi_otobus}, Tüm araçlara oranı: %{arac_sayisi_otobus * 100 / arac_sayisi_toplam: .2f}")
+    print(f"Kamyon sayısı: {arac_sayisi_kamyon}, Tüm araçlara oranı: %{arac_sayisi_kamyon * 100 / arac_sayisi_toplam: .2f}")
+    print(f"Tır sayısı: {arac_sayisi_tir}, Tüm araçlara oranı: %{arac_sayisi_tir * 100 / arac_sayisi_toplam: .2f}")
+    print()
+
+    #otoparkın toplam geliri (TL), her araç sınıfı için toplam gelirler (TL) ve otoparkın toplam geliri içindeki oranları (%)
+    print(f"Otoparkın toplam geliri:{round(ucret_toplam_tum_araclar,2)} TL")
+    print(f"Motorsiklet geliri: {round(ucret_toplam_motorsiklet,2)}, Toplam gelire oranı: %{ucret_toplam_motorsiklet * 100 / ucret_toplam_tum_araclar: .2f}")
+    print(f"Binek geliri: {round(ucret_toplam_binek,2)}, Toplam gelire oranı: %{ucret_toplam_binek * 100 / ucret_toplam_tum_araclar: .2f}")
+    print(f"Minibus geliri: {round(ucret_toplam_minibus,2)}, Toplam gelire oranı: %{ucret_toplam_minibus * 100 / ucret_toplam_tum_araclar: .2f}")
+    print(f"Otobüs geliri: {round(ucret_toplam_otobus,2)}, Toplam gelire oranı: %{ucret_toplam_otobus * 100 / ucret_toplam_tum_araclar: .2f}")
+    print(f"Kamyon geliri: {round(ucret_toplam_kamyon,2)}, Toplam gelire oranı: %{ucret_toplam_kamyon * 100 / ucret_toplam_tum_araclar: .2f}")
+    print(f"Tır geliri: {round(ucret_toplam_tir,2)}, Toplam gelire oranı: %{ucret_toplam_tir * 100 / ucret_toplam_tum_araclar: .2f}")
+    print()
+
+    #her araç sınıfı için araç başına ortalama otoparkta kalma süresi (gün, saat, dakika) ve araç başına ortalama gelir (TL)
+    print(f"Motorsiklet Park Süresi Ortalaması: {sure_hesaplama(sure_dakika_motorsiklet//arac_sayisi_motorsiklet)}, Araç Başı Ortalama Gelir: {round(ucret_toplam_motorsiklet/arac_sayisi_motorsiklet,2)} TL")
+    print(f"Binek Park Süresi Ortalaması: {sure_hesaplama(sure_dakika_binek//arac_sayisi_binek)}, Araç Başı Ortalama Gelir: {round(ucret_toplam_binek/arac_sayisi_binek,2)} TL")
+    print(f"Minibüs Park Süresi Ortalaması: {sure_hesaplama(sure_dakika_minibus//arac_sayisi_minibus)}, Araç Başı Ortalama Gelir: {round(ucret_toplam_minibus/arac_sayisi_minibus,2)} TL")
+    print(f"Otobüs Park Süresi Ortalaması: {sure_hesaplama(sure_dakika_otobus//arac_sayisi_otobus)}, Araç Başı Ortalama Gelir: {round(ucret_toplam_otobus/arac_sayisi_otobus,2)} TL")
+    print(f"Kamyon Park Süresi Ortalaması: {sure_hesaplama(sure_dakika_kamyon//arac_sayisi_kamyon)}, Araç Başı Ortalama Gelir: {round(ucret_toplam_kamyon/arac_sayisi_kamyon,2)} TL")
+    print(f"Tır Park Süresi Ortalaması: {sure_hesaplama(sure_dakika_tir//arac_sayisi_tir)}, Araç Başı Ortalama Gelir: {round(ucret_toplam_tir/arac_sayisi_tir,2)} TL")
+    print()
 
 main()
