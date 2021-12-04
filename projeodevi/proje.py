@@ -46,7 +46,7 @@ def sure_hesaplama(dakika):
 def main():
     arac_var = "e"
 
-    while arac_var == "e":
+    while arac_var == "e" or arac_var == "E":
 
         #region INPUT
 
@@ -70,9 +70,9 @@ def main():
 
         ozel_durum = "y"
         if arac_sinifi_kodu == 1 or arac_sinifi_kodu == 2:
-            ozel_durum = input("(Varsa) Sürücünün özel durumunu girin:")
+            ozel_durum = input("(Varsa) Sürücünün özel durumunu girin (y/Y/g/G/e/E): ")
             while not (ozel_durum == "y" or ozel_durum == "Y" or ozel_durum == "G" or ozel_durum == "g" or ozel_durum == "E" or ozel_durum == "e"):
-                ozel_durum = input("(Varsa) Sürücünün özel durumunu girin:")
+                ozel_durum = input("(Varsa) Sürücünün özel durumunu girin (y/Y/g/G/e/E): ")
 
         #endregion
 
@@ -89,12 +89,16 @@ def main():
 
 
         print(f"Sürücünün adı ve soyadı: {surucu_ad_soyad}")
-        if ozel_durum == "g" or ozel_durum == "E" or ozel_durum == "e":
-            print(f"Sürücünün özel durumu:{ozel_durum}")
-            if ozel_durum == "g" or ozel_durum == "G":
-                print(f"Gazi indirim oranı: {INDIRIM_ORANI_GAZI}")
-            else:
-                print(f"Engelli indirim oranı:{INDIRIM_ORANI_ENGELLI}")
+
+        indirim_orani = 0
+        if ozel_durum == "g" or ozel_durum == "G":
+            print(f"Gazi indirim oranı: %{INDIRIM_ORANI_GAZI}")
+            indirim_orani = INDIRIM_ORANI_GAZI
+            print(f"Sürücünün özel durumu: Gazi")
+        elif ozel_durum == "e" or ozel_durum == "E":
+            print(f"Engelli indirim oranı: %{INDIRIM_ORANI_ENGELLI}")
+            indirim_orani = INDIRIM_ORANI_ENGELLI
+            print(f"Sürücünün özel durumu: Engelli")
 
 
 
@@ -115,7 +119,14 @@ def main():
         ucret_giris = (arac_agirligi / 1000) * 2.5
         toplam_ucret = ucret_giris + ucret_sure
 
-        print(f"Otopark ücreti: {toplam_ucret}")
+        toplam_ucret -= toplam_ucret * indirim_orani / 100
+
+        print(f"Otopark ücreti: {round(toplam_ucret,2)} TL")
+        arac_var = input("Başka araç var mı? (e/E/h/H): ")
+        while not (arac_var == "e" or arac_var == "E" or arac_var == "H" or arac_var == "h"):
+            arac_var = input("Başka araç var mı? (e/E/h/H): ")
+        print()
+
         #endregion
 
 main()
