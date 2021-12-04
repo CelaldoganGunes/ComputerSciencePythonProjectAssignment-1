@@ -1,7 +1,5 @@
 import sys
-sys.stdin = open("inputs.txt", encoding="utf-8")
-
-
+sys.stdin = open("input.txt", encoding="utf-8")
 
 SURE_BIR_SAATTEN_AZ = 3
 SURE_UC_SAATTEN_AZ = 5
@@ -157,11 +155,6 @@ def main():
 
         ucret_gun = dd * SURE_HER_YIRMIDORT_SAAT
 
-        print()
-        print()
-        print()
-        print()
-
         if hh == 0 and mm == 0:
            ucret_saat = 0
         elif hh == 0 and mm > 0:
@@ -174,13 +167,7 @@ def main():
             ucret_saat = SURE_ON_SAATTEN_AZ
         elif hh < 24:
             ucret_saat = SURE_YIRMIDORT_SAATTEN_AZ
-            
-        print(ucret_saat)
-        print()
-        print()
-        print()
-        print()
-        print()
+
         ucret_sure = sinif_katsayi * (ucret_gun + ucret_saat)
 
         ucret_giris = (arac_agirligi / 1000) * 2.5
