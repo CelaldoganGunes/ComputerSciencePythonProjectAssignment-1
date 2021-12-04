@@ -78,6 +78,10 @@ def main():
     otuz_dakika_alti_arac = 0
     bir_gunden_fazla_otobus_minibus = 0
     otuz_gunden_fazla_veya_bin_tlden_fazla_arac_sayisi = 0
+    ozel_durumlu_arac_sayisi = 0
+    ozel_durumlu_arac_park_suresi = 0
+
+
 
     while arac_var == "e" or arac_var == "E":
 
@@ -126,10 +130,14 @@ def main():
             print(f"Gazi indirim oranı: %{INDIRIM_ORANI_GAZI}")
             indirim_orani = INDIRIM_ORANI_GAZI
             print(f"Sürücünün özel durumu: Gazi")
+            ozel_durumlu_arac_sayisi += 1
+            ozel_durumlu_arac_park_suresi += arac_otoparkta_kaldigi_sure
         elif ozel_durum == "e" or ozel_durum == "E":
             print(f"Engelli indirim oranı: %{INDIRIM_ORANI_ENGELLI}")
             indirim_orani = INDIRIM_ORANI_ENGELLI
             print(f"Sürücünün özel durumu: Engelli")
+            ozel_durumlu_arac_sayisi += 1
+            ozel_durumlu_arac_park_suresi += arac_otoparkta_kaldigi_sure
 
 
         ucret_gun = dd * SURE_HER_YIRMIDORT_SAAT
@@ -255,14 +263,14 @@ def main():
     # otoparkta 30 dakika veya daha kısa süre kalan motosiklet ve binek tipi araçların, tüm motosiklet ve binek tipi araçlar içindeki oranı (%)
     print(f"otoparkta 30 dakika veya daha kısa süre kalan motosiklet ve binek tipi araçların, tüm motosiklet ve binek tipi araçlar içindeki oranı (%):{otuz_dakika_alti_arac * 100 / (arac_sayisi_motorsiklet+arac_sayisi_binek): .2f}")
 
-    #otoparkta 1 günden daha uzun süre kalan minibüs ve otobüs tipi araçların, tüm minibüs ve otobüs tipi araçlar içindeki oranı (%)
+    # otoparkta 1 günden daha uzun süre kalan minibüs ve otobüs tipi araçların, tüm minibüs ve otobüs tipi araçlar içindeki oranı (%)
     print(f"otoparkta 1 günden daha uzun süre kalan minibüs ve otobüs tipi araçların, tüm minibüs ve otobüs tipi araçlar içindeki oranı: %{bir_gunden_fazla_otobus_minibus * 100 / (arac_sayisi_otobus + arac_sayisi_minibus) :.2f}")
 
     # otoparkta 30 günden daha uzun süre kalan veya 1000 TL’den daha yüksek gelir edilen araçların, tüm araçlar içindeki oranı (%)
     print(f"otoparkta 30 günden daha uzun süre kalan veya 1000 TL’den daha yüksek gelir edilen araçların, tüm araçlar içindeki oranı: %{otuz_gunden_fazla_veya_bin_tlden_fazla_arac_sayisi * 100 / arac_sayisi_toplam :.2f}")
 
-
-
+    # sürücüsü gazi veya engelli olan araçların sayıları, tüm araçlar içindeki oranları (%) ve araç başına ortalama otoparkta kalma süreleri (gün, saat, dakika)
+    print(f"sürücüsü gazi veya engelli olan araçların sayısı: {ozel_durumlu_arac_sayisi}, tüm araçlar içindeki oranları: %{ozel_durumlu_arac_sayisi * 100 / arac_sayisi_toplam:.2f}, araç başına ortalama park süresi: {sure_hesaplama(ozel_durumlu_arac_park_suresi//ozel_durumlu_arac_sayisi, 'metin')}")
 
 
 
