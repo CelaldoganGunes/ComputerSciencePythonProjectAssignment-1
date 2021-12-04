@@ -1,3 +1,8 @@
+import sys
+sys.stdin = open("inputs.txt", encoding="utf-8")
+
+
+
 SURE_BIR_SAATTEN_AZ = 3
 SURE_UC_SAATTEN_AZ = 5
 SURE_BES_SAATTEN_AZ = 7
@@ -48,6 +53,7 @@ def sure_hesaplama(dakika,donus_tipi):
         return f"{gun} gün, {artik_saat} saat, {artik_dakika} dakika"
 
 def main():
+
     arac_var = "e"
 
     arac_sayisi_toplam = 0
@@ -120,6 +126,7 @@ def main():
 
         #region PRINT
 
+        print()
         print(f"Aracın plakası: {arac_plakasi}")
 
         sinif_adi, sinif_katsayi = sinif_kodundan_arac_sinifini_ogren(arac_sinifi_kodu)
@@ -149,7 +156,15 @@ def main():
                 indirimli_uc_saatten_cok_arac_sayisi += 1
 
         ucret_gun = dd * SURE_HER_YIRMIDORT_SAAT
-        if hh < 1:
+
+        print()
+        print()
+        print()
+        print()
+
+        if hh == 0 and mm == 0:
+           ucret_saat = 0
+        elif hh == 0 and mm > 0:
             ucret_saat = SURE_BIR_SAATTEN_AZ
         elif hh < 3:
             ucret_saat = SURE_UC_SAATTEN_AZ
@@ -159,7 +174,13 @@ def main():
             ucret_saat = SURE_ON_SAATTEN_AZ
         elif hh < 24:
             ucret_saat = SURE_YIRMIDORT_SAATTEN_AZ
-
+            
+        print(ucret_saat)
+        print()
+        print()
+        print()
+        print()
+        print()
         ucret_sure = sinif_katsayi * (ucret_gun + ucret_saat)
 
         ucret_giris = (arac_agirligi / 1000) * 2.5
@@ -226,14 +247,11 @@ def main():
             en_uzun_kalan_aracin_suresi = arac_otoparkta_kaldigi_sure
             en_uzun_kalan_aracin_tutari = ucret_toplam
 
-
-
-
-
+        print()
         arac_var = input("Başka araç var mı? (e/E/h/H): ")
         while not (arac_var == "e" or arac_var == "E" or arac_var == "H" or arac_var == "h"):
             arac_var = input("Başka araç var mı? (e/E/h/H): ")
-        print()
+
 
         #endregion
 
@@ -292,17 +310,5 @@ def main():
 
     #en çok gelir elde edilen binek aracın otoparkta kaldığı süre (gün, saat, dakika) ve elde edilen gelir (TL)
     print(f"en çok gelir elde edilen binek aracın otoparkta kaldığı süre: {sure_hesaplama(en_masrafli_binek_aracin_suresi,'metin')}, elde edilen gelir:{round(en_masrafli_binek_aracin_ucreti,2)} TL")
-
-
-
-
-
-
-
-
-
-
-
-
 
 main()
