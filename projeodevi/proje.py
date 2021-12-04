@@ -82,6 +82,11 @@ def main():
     ozel_durumlu_arac_park_suresi = 0
     indirimli_uc_saatten_cok_arac_sayisi = 0
 
+    en_uzun_kalan_aracin_suresi = 0
+    en_uzun_kalan_aracin_tutari = 0
+    en_masrafli_binek_aracin_suresi = 0
+    en_masrafli_binek_aracin_ucreti = 0
+
 
     while arac_var == "e" or arac_var == "E":
 
@@ -175,7 +180,9 @@ def main():
             arac_sayisi_binek += 1
             ucret_toplam_binek += ucret_toplam
             sure_dakika_binek += arac_otoparkta_kaldigi_sure
-
+            if en_masrafli_binek_aracin_ucreti < ucret_toplam:
+                en_masrafli_binek_aracin_ucreti = ucret_toplam
+                en_masrafli_binek_aracin_suresi = arac_otoparkta_kaldigi_sure
         elif sinif_adi == "minibus":
             arac_sayisi_minibus += 1
             ucret_toplam_minibus += ucret_toplam
@@ -215,7 +222,9 @@ def main():
         if arac_otoparkta_kaldigi_sure > 30 * 24 * 60 or ucret_toplam > 1000:
             otuz_gunden_fazla_veya_bin_tlden_fazla_arac_sayisi += 1
 
-
+        if en_uzun_kalan_aracin_suresi < arac_otoparkta_kaldigi_sure:
+            en_uzun_kalan_aracin_suresi = arac_otoparkta_kaldigi_sure
+            en_uzun_kalan_aracin_tutari = ucret_toplam
 
 
 
@@ -278,8 +287,11 @@ def main():
     #  otoparkta 3 saatten daha uzun süre kalan indirim uygulanan araçların, tüm indirim uygulanan araçlar içindeki oranı (%)
     print(f"otoparkta 3 saatten daha uzun süre kalan indirim uygulanan araçların, tüm indirim uygulanan araçlar içindeki oranı: %{indirimli_uc_saatten_cok_arac_sayisi * 100 / ozel_durumlu_arac_sayisi :.2f}")
 
+    # en uzun süre otoparkta kalan aracın otoparkta kaldığı süre (gün, saat, dakika) ve elde edilen gelir (TL)
+    print(f"en uzun süre otoparkta kalan aracın otoparkta kaldığı süre: {sure_hesaplama(en_uzun_kalan_aracin_suresi,'metin')}, elde edilen gelir:{round(en_uzun_kalan_aracin_tutari,2)} TL")
 
-
+    #en çok gelir elde edilen binek aracın otoparkta kaldığı süre (gün, saat, dakika) ve elde edilen gelir (TL)
+    print(f"en çok gelir elde edilen binek aracın otoparkta kaldığı süre: {sure_hesaplama(en_masrafli_binek_aracin_suresi,'metin')}, elde edilen gelir:{round(en_masrafli_binek_aracin_ucreti,2)} TL")
 
 
 
