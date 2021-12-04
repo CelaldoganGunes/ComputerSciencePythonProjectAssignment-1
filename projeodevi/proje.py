@@ -75,6 +75,9 @@ def main():
 
     bir_tondan_hafif_binek_arac_sayisi = 0
     on_tondan_agir_buyuk_arac_sayisi = 0
+    otuz_dakika_alti_arac = 0
+    bir_gunden_fazla_otobus_minibus = 0
+    otuz_gunden_fazla_veya_bin_tlden_fazla_arac_sayisi = 0
 
     while arac_var == "e" or arac_var == "E":
 
@@ -90,12 +93,6 @@ def main():
 
         while arac_agirligi <= 0:
             arac_agirligi = float(input("Araç ağırlığını kg cinsinden girin: "))
-
-        if arac_sinifi_kodu == SINIF_KODU_BINEK and arac_agirligi < 1000:
-            bir_tondan_hafif_binek_arac_sayisi += 1
-
-        if (arac_sinifi_kodu == SINIF_KODU_OTOBUS or arac_sinifi_kodu == SINIF_KODU_KAMYON or arac_sinifi_kodu == SINIF_KODU_TIR) and arac_agirligi > 10000:
-            on_tondan_agir_buyuk_arac_sayisi += 1
 
         arac_otoparkta_kaldigi_sure = int(input("Aracın otoparkta kaç dakika kaldığını yazın:"))
 
@@ -162,6 +159,7 @@ def main():
             arac_sayisi_motorsiklet += 1
             ucret_toplam_motorsiklet += ucret_toplam
             sure_dakika_motorsiklet += arac_otoparkta_kaldigi_sure
+
         elif sinif_adi == "binek":
             arac_sayisi_binek += 1
             ucret_toplam_binek += ucret_toplam
@@ -187,6 +185,31 @@ def main():
             ucret_toplam_tir += ucret_toplam
             sure_dakika_tir += arac_otoparkta_kaldigi_sure
 
+
+
+
+
+        if arac_sinifi_kodu == SINIF_KODU_BINEK and arac_agirligi < 1000:
+            bir_tondan_hafif_binek_arac_sayisi += 1
+
+        if (arac_sinifi_kodu == SINIF_KODU_OTOBUS or arac_sinifi_kodu == SINIF_KODU_KAMYON or arac_sinifi_kodu == SINIF_KODU_TIR) and arac_agirligi > 10000:
+            on_tondan_agir_buyuk_arac_sayisi += 1
+
+        if arac_otoparkta_kaldigi_sure < 30 and (arac_sinifi_kodu == SINIF_KODU_MOTORSIKLET or arac_sinifi_kodu == SINIF_KODU_BINEK):
+            otuz_dakika_alti_arac += 1
+
+        if arac_otoparkta_kaldigi_sure > 24 * 60 and (arac_sinifi_kodu == SINIF_KODU_OTOBUS or arac_sinifi_kodu == SINIF_KODU_MINIBUS):
+            bir_gunden_fazla_otobus_minibus += 1
+
+        if arac_otoparkta_kaldigi_sure > 30 * 24 * 60 or ucret_toplam > 1000:
+            otuz_gunden_fazla_veya_bin_tlden_fazla_arac_sayisi += 1
+
+
+
+
+
+
+
         arac_var = input("Başka araç var mı? (e/E/h/H): ")
         while not (arac_var == "e" or arac_var == "E" or arac_var == "H" or arac_var == "h"):
             arac_var = input("Başka araç var mı? (e/E/h/H): ")
@@ -194,7 +217,7 @@ def main():
 
         #endregion
 
-    #otoparkı kullanan toplam araç sayısı, her araç sınıfı için araç sayıları ve tüm araçlar içindeki oranları (%)
+    #  otoparkı kullanan toplam araç sayısı, her araç sınıfı için araç sayıları ve tüm araçlar içindeki oranları (%)
     print(f"Otoparktaki toplam araç sayısı:{arac_sayisi_toplam}")
     print(f"Motorsiklet sayısı: {arac_sayisi_motorsiklet}, Tüm araçlara oranı: %{arac_sayisi_motorsiklet * 100 / arac_sayisi_toplam: .2f}")
     print(f"Binek sayısı: {arac_sayisi_binek}, Tüm araçlara oranı: %{arac_sayisi_binek * 100 / arac_sayisi_toplam: .2f}")
@@ -204,7 +227,7 @@ def main():
     print(f"Tır sayısı: {arac_sayisi_tir}, Tüm araçlara oranı: %{arac_sayisi_tir * 100 / arac_sayisi_toplam: .2f}")
     print()
 
-    #otoparkın toplam geliri (TL), her araç sınıfı için toplam gelirler (TL) ve otoparkın toplam geliri içindeki oranları (%)
+    #  otoparkın toplam geliri (TL), her araç sınıfı için toplam gelirler (TL) ve otoparkın toplam geliri içindeki oranları (%)
     print(f"Otoparkın toplam geliri:{round(ucret_toplam_tum_araclar,2)} TL")
     print(f"Motorsiklet geliri: {round(ucret_toplam_motorsiklet,2)}, Toplam gelire oranı: %{ucret_toplam_motorsiklet * 100 / ucret_toplam_tum_araclar: .2f}")
     print(f"Binek geliri: {round(ucret_toplam_binek,2)}, Toplam gelire oranı: %{ucret_toplam_binek * 100 / ucret_toplam_tum_araclar: .2f}")
@@ -214,7 +237,7 @@ def main():
     print(f"Tır geliri: {round(ucret_toplam_tir,2)}, Toplam gelire oranı: %{ucret_toplam_tir * 100 / ucret_toplam_tum_araclar: .2f}")
     print()
 
-    #her araç sınıfı için araç başına ortalama otoparkta kalma süresi (gün, saat, dakika) ve araç başına ortalama gelir (TL)
+    #  her araç sınıfı için araç başına ortalama otoparkta kalma süresi (gün, saat, dakika) ve araç başına ortalama gelir (TL)
     print(f"Motorsiklet Park Süresi Ortalaması: {sure_hesaplama(sure_dakika_motorsiklet//arac_sayisi_motorsiklet, 'metin')}, Araç Başı Ortalama Gelir: {round(ucret_toplam_motorsiklet/arac_sayisi_motorsiklet,2)} TL")
     print(f"Binek Park Süresi Ortalaması: {sure_hesaplama(sure_dakika_binek//arac_sayisi_binek, 'metin')}, Araç Başı Ortalama Gelir: {round(ucret_toplam_binek/arac_sayisi_binek,2)} TL")
     print(f"Minibüs Park Süresi Ortalaması: {sure_hesaplama(sure_dakika_minibus//arac_sayisi_minibus, 'metin')}, Araç Başı Ortalama Gelir: {round(ucret_toplam_minibus/arac_sayisi_minibus,2)} TL")
@@ -223,15 +246,20 @@ def main():
     print(f"Tır Park Süresi Ortalaması: {sure_hesaplama(sure_dakika_tir//arac_sayisi_tir, 'metin')}, Araç Başı Ortalama Gelir: {round(ucret_toplam_tir/arac_sayisi_tir,2)} TL")
     print()
 
-    #ağırlığı 1 tondan az olan binek araçların, tüm binek araçlar içindeki oranı (%)
+    # ağırlığı 1 tondan az olan binek araçların, tüm binek araçlar içindeki oranı (%)
     print(f"Ağırlığı 1 tondan az olan binek araç sayısının tüm binek araçlara oranı: %{bir_tondan_hafif_binek_arac_sayisi * 100 / arac_sayisi_binek: .2f}")
 
-    #ağırlığı 10 tondan fazla olan otobüs, kamyon ve tır sınıfı araçların, tüm otobüs, kamyon ve tır sınıfı araçlar içindeki oranı (%)
+    # ağırlığı 10 tondan fazla olan otobüs, kamyon ve tır sınıfı araçların, tüm otobüs, kamyon ve tır sınıfı araçlar içindeki oranı (%)
     print(f"Ağırlığı 10 tondan fazla olan otobüs, kamyon ve tır sınıfı araçların, tüm otobüs, kamyon ve tır sınıfı araçlar içindeki oranı: %{on_tondan_agir_buyuk_arac_sayisi * 100 / (arac_sayisi_otobus + arac_sayisi_kamyon + arac_sayisi_tir):.2f}")
 
+    # otoparkta 30 dakika veya daha kısa süre kalan motosiklet ve binek tipi araçların, tüm motosiklet ve binek tipi araçlar içindeki oranı (%)
+    print(f"otoparkta 30 dakika veya daha kısa süre kalan motosiklet ve binek tipi araçların, tüm motosiklet ve binek tipi araçlar içindeki oranı (%):{otuz_dakika_alti_arac * 100 / (arac_sayisi_motorsiklet+arac_sayisi_binek): .2f}")
 
+    #otoparkta 1 günden daha uzun süre kalan minibüs ve otobüs tipi araçların, tüm minibüs ve otobüs tipi araçlar içindeki oranı (%)
+    print(f"otoparkta 1 günden daha uzun süre kalan minibüs ve otobüs tipi araçların, tüm minibüs ve otobüs tipi araçlar içindeki oranı: %{bir_gunden_fazla_otobus_minibus * 100 / (arac_sayisi_otobus + arac_sayisi_minibus) :.2f}")
 
-
+    # otoparkta 30 günden daha uzun süre kalan veya 1000 TL’den daha yüksek gelir edilen araçların, tüm araçlar içindeki oranı (%)
+    print(f"otoparkta 30 günden daha uzun süre kalan veya 1000 TL’den daha yüksek gelir edilen araçların, tüm araçlar içindeki oranı: %{otuz_gunden_fazla_veya_bin_tlden_fazla_arac_sayisi * 100 / arac_sayisi_toplam :.2f}")
 
 
 
