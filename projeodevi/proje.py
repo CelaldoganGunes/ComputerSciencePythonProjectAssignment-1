@@ -1,3 +1,6 @@
+import sys
+sys.stdin = open("input.txt", encoding="utf-8")
+
 # Sabitler
 
 SURE_BIR_SAATTEN_AZ = 3
@@ -110,12 +113,12 @@ def main():
         while arac_agirligi <= 0:
             arac_agirligi = float(input("Araç ağırlığını kg cinsinden girin: "))
 
-        arac_otoparkta_kaldigi_sure = int(input("Aracın otoparkta kaç dakika kaldığını yazın:"))
+        arac_otoparkta_kaldigi_sure = int(input("Aracın otoparkta kaç dakika kaldığını yazın: "))
 
         while arac_otoparkta_kaldigi_sure <= 0:
-            arac_otoparkta_kaldigi_sure = int(input("Aracın otoparkta kaç dakika kaldığını yazın:"))
+            arac_otoparkta_kaldigi_sure = int(input("Aracın otoparkta kaç dakika kaldığını yazın: "))
 
-        surucu_ad_soyad = input("Sürücünün adını ve soyadını girin:")
+        surucu_ad_soyad = input("Sürücünün adını ve soyadını girin: ")
 
         ozel_durum = "y"
         if arac_sinifi_kodu == 1 or arac_sinifi_kodu == 2:
@@ -245,8 +248,10 @@ def main():
         while not (arac_var == "e" or arac_var == "E" or arac_var == "H" or arac_var == "h"):
             arac_var = input("Başka araç var mı? (e/E/h/H): ")
 
+    print()
+
     #  otoparkı kullanan toplam araç sayısı, her araç sınıfı için araç sayıları ve tüm araçlar içindeki oranları (%)
-    print(f"Otoparktaki toplam araç sayısı:{arac_sayisi_toplam}")
+    print(f"Otoparktaki toplam araç sayısı: {arac_sayisi_toplam}")
     print(f"Motorsiklet sayısı: {arac_sayisi_motorsiklet}, Tüm araçlara oranı: %{arac_sayisi_motorsiklet * 100 / arac_sayisi_toplam: .2f}")
     print(f"Binek sayısı: {arac_sayisi_binek}, Tüm araçlara oranı: %{arac_sayisi_binek * 100 / arac_sayisi_toplam: .2f}")
     print(f"Minibus sayısı: {arac_sayisi_minibus}, Tüm araçlara oranı: %{arac_sayisi_minibus * 100 / arac_sayisi_toplam: .2f}")
@@ -256,7 +261,7 @@ def main():
     print()
 
     #  otoparkın toplam geliri (TL), her araç sınıfı için toplam gelirler (TL) ve otoparkın toplam geliri içindeki oranları (%)
-    print(f"Otoparkın toplam geliri:{round(ucret_toplam_tum_araclar,2)} TL")
+    print(f"Otoparkın toplam geliri: {round(ucret_toplam_tum_araclar,2)} TL")
     print(f"Motorsiklet geliri: {round(ucret_toplam_motorsiklet,2)}, Toplam gelire oranı: %{ucret_toplam_motorsiklet * 100 / ucret_toplam_tum_araclar: .2f}")
     print(f"Binek geliri: {round(ucret_toplam_binek,2)}, Toplam gelire oranı: %{ucret_toplam_binek * 100 / ucret_toplam_tum_araclar: .2f}")
     print(f"Minibus geliri: {round(ucret_toplam_minibus,2)}, Toplam gelire oranı: %{ucret_toplam_minibus * 100 / ucret_toplam_tum_araclar: .2f}")
@@ -281,24 +286,24 @@ def main():
     print(f"Ağırlığı 10 tondan fazla olan otobüs, kamyon ve tır sınıfı araçların, tüm otobüs, kamyon ve tır sınıfı araçlar içindeki oranı: %{on_tondan_agir_buyuk_arac_sayisi * 100 / (arac_sayisi_otobus + arac_sayisi_kamyon + arac_sayisi_tir):.2f}")
 
     # otoparkta 30 dakika veya daha kısa süre kalan motosiklet ve binek tipi araçların, tüm motosiklet ve binek tipi araçlar içindeki oranı (%)
-    print(f"otoparkta 30 dakika veya daha kısa süre kalan motosiklet ve binek tipi araçların, tüm motosiklet ve binek tipi araçlar içindeki oranı (%):{otuz_dakika_alti_arac * 100 / (arac_sayisi_motorsiklet+arac_sayisi_binek): .2f}")
+    print(f"Otoparkta 30 dakika veya daha kısa süre kalan motosiklet ve binek tipi araçların, tüm motosiklet ve binek tipi araçlar içindeki oranı: %{otuz_dakika_alti_arac * 100 / (arac_sayisi_motorsiklet+arac_sayisi_binek): .2f}")
 
     # otoparkta 1 günden daha uzun süre kalan minibüs ve otobüs tipi araçların, tüm minibüs ve otobüs tipi araçlar içindeki oranı (%)
-    print(f"otoparkta 1 günden daha uzun süre kalan minibüs ve otobüs tipi araçların, tüm minibüs ve otobüs tipi araçlar içindeki oranı: %{bir_gunden_fazla_otobus_minibus * 100 / (arac_sayisi_otobus + arac_sayisi_minibus) :.2f}")
+    print(f"Otoparkta 1 günden daha uzun süre kalan minibüs ve otobüs tipi araçların, tüm minibüs ve otobüs tipi araçlar içindeki oranı: %{bir_gunden_fazla_otobus_minibus * 100 / (arac_sayisi_otobus + arac_sayisi_minibus) :.2f}")
 
     # otoparkta 30 günden daha uzun süre kalan veya 1000 TL’den daha yüksek gelir edilen araçların, tüm araçlar içindeki oranı (%)
-    print(f"otoparkta 30 günden daha uzun süre kalan veya 1000 TL’den daha yüksek gelir edilen araçların, tüm araçlar içindeki oranı: %{otuz_gunden_fazla_veya_bin_tlden_fazla_arac_sayisi * 100 / arac_sayisi_toplam :.2f}")
+    print(f"Otoparkta 30 günden daha uzun süre kalan veya 1000 TL’den daha yüksek gelir edilen araçların, tüm araçlar içindeki oranı: %{otuz_gunden_fazla_veya_bin_tlden_fazla_arac_sayisi * 100 / arac_sayisi_toplam :.2f}")
 
     # sürücüsü gazi veya engelli olan araçların sayıları, tüm araçlar içindeki oranları (%) ve araç başına ortalama otoparkta kalma süreleri (gün, saat, dakika)
-    print(f"sürücüsü gazi veya engelli olan araçların sayısı: {ozel_durumlu_arac_sayisi}, tüm araçlar içindeki oranları: %{ozel_durumlu_arac_sayisi * 100 / arac_sayisi_toplam:.2f}, araç başına ortalama park süresi: {sure_hesaplama(ozel_durumlu_arac_park_suresi//ozel_durumlu_arac_sayisi, 'metin')}")
+    print(f"Sürücüsü gazi veya engelli olan araçların sayısı: {ozel_durumlu_arac_sayisi}, tüm araçlar içindeki oranları: %{ozel_durumlu_arac_sayisi * 100 / arac_sayisi_toplam:.2f}, araç başına ortalama park süresi: {sure_hesaplama(ozel_durumlu_arac_park_suresi//ozel_durumlu_arac_sayisi, 'metin')}")
 
     #  otoparkta 3 saatten daha uzun süre kalan indirim uygulanan araçların, tüm indirim uygulanan araçlar içindeki oranı (%)
-    print(f"otoparkta 3 saatten daha uzun süre kalan indirim uygulanan araçların, tüm indirim uygulanan araçlar içindeki oranı: %{indirimli_uc_saatten_cok_arac_sayisi * 100 / ozel_durumlu_arac_sayisi :.2f}")
+    print(f"Otoparkta 3 saatten daha uzun süre kalan indirim uygulanan araçların, tüm indirim uygulanan araçlar içindeki oranı: %{indirimli_uc_saatten_cok_arac_sayisi * 100 / ozel_durumlu_arac_sayisi :.2f}")
 
     # en uzun süre otoparkta kalan aracın otoparkta kaldığı süre (gün, saat, dakika) ve elde edilen gelir (TL)
-    print(f"en uzun süre otoparkta kalan aracın otoparkta kaldığı süre: {sure_hesaplama(en_uzun_kalan_aracin_suresi,'metin')}, elde edilen gelir:{round(en_uzun_kalan_aracin_tutari,2)} TL")
+    print(f"En uzun süre otoparkta kalan aracın otoparkta kaldığı süre: {sure_hesaplama(en_uzun_kalan_aracin_suresi,'metin')}, elde edilen gelir: {round(en_uzun_kalan_aracin_tutari,2)} TL")
 
     #en çok gelir elde edilen binek aracın otoparkta kaldığı süre (gün, saat, dakika) ve elde edilen gelir (TL)
-    print(f"en çok gelir elde edilen binek aracın otoparkta kaldığı süre: {sure_hesaplama(en_masrafli_binek_aracin_suresi,'metin')}, elde edilen gelir:{round(en_masrafli_binek_aracin_ucreti,2)} TL")
+    print(f"En çok gelir elde edilen binek aracın otoparkta kaldığı süre: {sure_hesaplama(en_masrafli_binek_aracin_suresi,'metin')}, elde edilen gelir: {round(en_masrafli_binek_aracin_ucreti,2)} TL")
 
 main()
