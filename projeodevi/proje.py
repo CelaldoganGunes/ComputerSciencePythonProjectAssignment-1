@@ -1,5 +1,4 @@
-import sys
-sys.stdin = open("input.txt", encoding="utf-8")
+#Sabitler
 
 SURE_BIR_SAATTEN_AZ = 3
 SURE_UC_SAATTEN_AZ = 5
@@ -24,6 +23,8 @@ SINIF_KODU_TIR = 6
 
 INDIRIM_ORANI_GAZI = 100
 INDIRIM_ORANI_ENGELLI = 50
+
+#Fonksiyonlar
 
 def sinif_kodundan_arac_sinifini_ogren(sinif_kodu):
     if sinif_kodu == SINIF_KODU_MOTORSIKLET:
@@ -94,7 +95,6 @@ def main():
 
     while arac_var == "e" or arac_var == "E":
 
-        #region INPUT
 
         arac_plakasi = input("Plakayı girin: ")
         arac_sinifi_kodu = int(input("Araç sınıfı kodunu girin [1-6]: "))
@@ -119,10 +119,6 @@ def main():
             ozel_durum = input("(Varsa) Sürücünün özel durumunu girin (y/Y/g/G/e/E): ")
             while not (ozel_durum == "y" or ozel_durum == "Y" or ozel_durum == "G" or ozel_durum == "g" or ozel_durum == "E" or ozel_durum == "e"):
                 ozel_durum = input("(Varsa) Sürücünün özel durumunu girin (y/Y/g/G/e/E): ")
-
-        #endregion
-
-        #region PRINT
 
         print()
         print(f"Aracın plakası: {arac_plakasi}")
@@ -238,9 +234,6 @@ def main():
         arac_var = input("Başka araç var mı? (e/E/h/H): ")
         while not (arac_var == "e" or arac_var == "E" or arac_var == "H" or arac_var == "h"):
             arac_var = input("Başka araç var mı? (e/E/h/H): ")
-
-
-        #endregion
 
     #  otoparkı kullanan toplam araç sayısı, her araç sınıfı için araç sayıları ve tüm araçlar içindeki oranları (%)
     print(f"Otoparktaki toplam araç sayısı:{arac_sayisi_toplam}")
