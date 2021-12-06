@@ -1,3 +1,6 @@
+#import sys
+#sys.stdin = open("input.txt", encoding="utf-8")
+
 # Sabitler
 
 SURE_BIR_SAATTEN_AZ = 3
@@ -103,10 +106,10 @@ def main():
         #Inputlar
 
         arac_plakasi = input("Plakayı girin: ")
-        arac_sinifi_kodu = int(input("Araç sınıfı kodunu girin [1-6]: "))
+        arac_sinifi_kodu = int(input("Araç sınıfı kodunu girin (1: motor, 2:binek, 3:minibus, 4:otobus, 5:kamyon, 6:tır): "))
 
         while not arac_sinifi_kodu in range(1, 7):
-            arac_sinifi_kodu = int(input("Araç sınıfı kodunu girin [1-6]: "))
+            arac_sinifi_kodu = int(input("Araç sınıfı kodunu girin (1: motor, 2:binek, 3:minibus, 4:otobus, 5:kamyon, 6:tır): "))
 
         arac_agirligi = float(input("Araç ağırlığını kg cinsinden girin: "))
 
