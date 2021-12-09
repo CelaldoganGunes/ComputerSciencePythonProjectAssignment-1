@@ -1,3 +1,7 @@
+import sys
+sys.stdin = open("input.txt", encoding="utf-8")
+
+
 # Sabitler
 
 SURE_BIR_SAATTEN_AZ = 3

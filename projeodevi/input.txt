@@ -1,314 +1,59 @@
-62 HS 8366
-4
-57140
-739579
-Zbgpr Bhaorf
-e
-16 GC 9008
-2
-76
-81427
-Pqhta Nlhdc
-g
-e
-19 FV 2541
-4
-080
-94095
-Spuvb Dgpvg
-e
-64 TY 6090
-6
-81
-03
-Thencl Kcqkpb
-e
-07 JU 5597
-6
-6137
-1472
-Ftdnqa Cpem
-e
-33 WW 8774
-6
-433
-61
-Asxxx Anfr
-e
-40 RR 8373
-3
-08
-741
-Nadh Qukpfw
-e
-28 NN 7733
-6
-6853
-19
-Wmpbwn Aofq
-e
-27 PX 8295
-4
-197118
-42529
-Eiyk Amcsf
-e
-00 YT 9557
-3
-38524
-2555
-Mbywhf Abdwuf
-e
-05 ND 9462
-5
-16998
-136
-Hugcjg Jgpym
-e
-27 WI 6819
+a
 1
-8205
-46339
-Pqjgx Ekejmd
-g
-e
-01 WR 5319
-3
-69
-927400
-Avouo Aoeiq
-e
-16 XK 9167
-3
-1832
-0072
-Wgbtxk Ltqfi
-e
-20 PD 4247
-3
-65
-40161
-Odct Sucft
-e
-24 BU 2915
+100.1
+1
+a
+G
+E
+b
 2
-4971
-187680
-Mtlfa Mvkvvp
+1000
+30
+b
 y
 e
-65 SK 2964
+c
+3
+900
+1500
+c
+e
+ç
 4
-34055
-090240
-Hseacm Xbsz
+8000.01
+1440
+ç
 e
-34 TP 7723
-4
-16
-931899
-Psnmd Ftod
-e
-66 GJ 3193
-4
-119
-5779
-Gkczs Dnup
-e
-37 LB 1248
-1
-35654
-9232
-Xwix Vteoh
-g
-e
-61 BI 9647
-2
-25
-61
-Cvgv Xwixbh
-g
-e
-14 UK 0175
+d
 5
-517
-3445
-Hgmnt Lpzglp
-e
-45 YL 7353
-3
-7557
-04337
-Xzflj Xxnm
-e
-20 VO 8900
-1
-010
-4611
-Dvpq Avbme
-y
-e
-27 DY 7404
-5
-91
-644
-Tuavxh Iygte
-e
-38 RH 2403
-5
-43
-760
-Cigth Xhskp
-e
-10 LB 7040
-2
-08
-72101
-Ssqefc Lhky
+17777.7
+22200
+d
 e
 e
-79 GV 7605
-3
-5358
-44
-Hhsrn Jpkj
-e
-61 WT 9813
-5
-02209
-2399
-Vrib Mxbu
-e
-14 CU 1848
-1
-56
-2281
-Jmriw Wuwak
-y
-e
-75 TT 5179
-3
-54
-13537
-Fnzx Ffdtaz
-e
-69 ZH 3170
-3
-12
-29
-Xfmfd Aoruxg
-e
-35 VP 0060
 6
-7768
-6492
-Qghgnw Ctui
+10000
+1439
 e
-71 RF 8582
-4
-6523
-311400
-Svezra Eclp
 e
-06 SI 0683
-5
-18
-08835
-Ohten Hsqthp
-e
-59 FZ 5551
+f
 2
-190772
-532128
-Jrcbwl Yfsi
-y
+1111
+21900
+f
+Y
 e
-45 MI 0918
-6
-6386
-03368
-Yrjlj Xivy
-e
-50 JI 6235
-4
-891
-2767
-Hshyj Rprdd
-e
-58 ED 2505
-5
-577749
-95480
-Jjxhf Lpxmcr
-e
-35 PF 0128
+g
 2
-171647
-710745
-Pkzdga Qfegcp
-e
-e
-38 CH 1408
-4
-107
-91617
-Unav Fmkrdl
-e
-62 DS 1350
-1
-5681
-03
-Joodcl Ethfi
+999.99
+180
+g
 g
 e
-03 EO 9813
-5
-75
-5481
-Jyxh Ficu
-e
-42 TM 9398
-4
-003418
-94111
-Hlxrkc Hoec
-e
-62 DF 7277
-1
-185
-941044
-Btkah Kefpqd
-y
-e
-09 EJ 1926
-5
-12015
-212508
-Ewmv Rlxkb
-e
-42 VP 5161
-5
-18337
-7702
-Bpllly Gspypi
-e
-58 DY 3074
-3
-429883
-355902
-Zhcl Ffwckl
-e
-14 GS 8787
+h
 2
-59908
-939822
-Drhw Egqtu
-e
-e
-48 DX 8306
-1
-7429
-4131
-Dxvb Rqtf
-e
+2222
+43204
+h
+E
 h
